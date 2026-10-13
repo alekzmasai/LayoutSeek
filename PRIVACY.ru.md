@@ -1,6 +1,6 @@
 # Политика конфиденциальности LayoutSeek
 
-[English](PRIVACY.md)
+[English](PRIVACY.en.md)
 
 Издатель: **t00r**. Контакт: [ag@idbi.ru](mailto:ag@idbi.ru).
 

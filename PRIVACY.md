@@ -1,25 +1,25 @@
-# LayoutSeek privacy policy
+# Политика конфиденциальности LayoutSeek
 
-[Русский](PRIVACY.ru.md)
+[English](PRIVACY.en.md)
 
-Publisher: **t00r**. Contact: [ag@idbi.ru](mailto:ag@idbi.ru).
+Издатель: **t00r**. Контакт: [ag@idbi.ru](mailto:ag@idbi.ru).
 
-Updated: **13 October 2026**.
+Обновлено: **13.10.2026**.
 
-## Data used by the app
+## Какие данные использует программа
 
-LayoutSeek reads installed app names and keyboard layout information from Windows. When correction is enabled, it reads the focused native Windows Search field, its text, caret and selection, along with focus, window and process information needed to identify that field. The active layout, time of the last keyboard or mouse activity, and Shift, Ctrl and Alt state help it wait for a pause.
+LayoutSeek получает от Windows названия установленных приложений и сведения о раскладках. При включённом исправлении программа читает активное поле штатного Windows Search, его текст, положение каретки и выделение, а также сведения о фокусе, окне и процессе для проверки нужного поля. Активная раскладка, время последней активности клавиатуры или мыши и состояние Shift, Ctrl и Alt помогают дождаться паузы.
 
-It does not read browser history or text from other windows, or record a sequence of keystrokes.
+История браузера и текст других окон не читаются. Последовательность нажатий клавиш не записывается.
 
-## Storage and network
+## Хранение и сеть
 
-App names, layouts, queries and correction candidates are processed in memory. LayoutSeek does not save query files or search history, use analytics, or send this data over the network. No app account is required.
+Названия приложений, раскладки, запросы и варианты исправления обрабатываются в памяти. LayoutSeek не сохраняет файлы с запросами или историю поиска, не использует аналитику и не отправляет эти данные по сети. Учётная запись для работы программы не нужна.
 
-Opt-in startup creates `LayoutSeek.lnk` in the current user's Windows Startup folder. The shortcut contains the app's local path and startup argument. Disabling startup removes the app's own shortcut. No other persistent preferences are saved.
+При добровольном включении автозапуска создаётся `LayoutSeek.lnk` в папке автозагрузки текущего пользователя Windows. Ярлык содержит локальный путь к программе и аргумент автозапуска. Выключение автозапуска удаляет собственный ярлык программы. Другие постоянные настройки не сохраняются.
 
-Disabling correction or exiting stops query processing. Corrected text remains in Windows Search, which may use its own history and network features according to Windows settings.
+Выключение исправлений или выход останавливает обработку запросов. Исправленный текст остаётся в Windows Search, который может использовать собственную историю и сетевые функции согласно настройкам Windows.
 
-## Support
+## Поддержка
 
-GitHub Issues are public and handled through GitHub. If you voluntarily email [ag@idbi.ru](mailto:ag@idbi.ru), your address, supplied name, message and attachments are used to respond to your request. Contacting support is not required to use the app.
+Обращения в GitHub Issues публичны и обрабатываются через GitHub. Если вы добровольно пишете на [ag@idbi.ru](mailto:ag@idbi.ru), ваш адрес, указанное имя, сообщение и вложения используются для ответа на обращение. Обращаться в поддержку для работы программы не требуется.

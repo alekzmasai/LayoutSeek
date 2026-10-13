@@ -1,81 +1,81 @@
 # LayoutSeek
 
-[Русский](README.ru.md)
+[English](README.en.md)
 
-Keyboard layout correction for app names in Windows Search. Type in the search box on the taskbar or open Start and begin typing. LayoutSeek checks installed app names and can correct a query such as `сркщьу` to `chrome`, without an extra keyboard shortcut.
+Исправление раскладки при поиске программ в Windows. Откройте поиск на панели задач или Пуск и начните печатать. LayoutSeek сверяется с названиями установленных приложений и может исправить `сркщьу` на `chrome`, без дополнительного сочетания клавиш.
 
-**0.3.4 is a preview for Windows 11 24H2, x64.** It requires .NET Framework 4.8 or later. The interface is in Russian.
+**0.3.4 является предварительной версией для Windows 11 24H2, x64.** Нужен .NET Framework 4.8 или новее. Интерфейс на русском языке.
 
-![LayoutSeek window with correction off and no startup shortcut](docs/images/app.png)
+![Окно LayoutSeek: исправление выключено, ярлык автозапуска не добавлен](docs/images/app.png)
 
-## Download and run
+## Скачать и запустить
 
-1. Download the portable ZIP from the [v0.3.4 preview release](https://github.com/alekzmasai/LayoutSeek/releases/tag/v0.3.4).
-2. Extract it to a folder you want to keep. Keep `SearchLayout.exe`, `SearchLayout.exe.config`, `SearchNative.dll` and `StartupLauncher.exe` together.
-3. Run `SearchLayout.exe`. A fresh manual launch starts with correction off.
-4. Click **«Включить»** to enable correction, then use Windows Search as usual.
+1. Скачайте переносной ZIP из [предварительного выпуска v0.3.4](https://github.com/alekzmasai/LayoutSeek/releases/tag/v0.3.4).
+2. Распакуйте его в постоянную папку. Файлы `SearchLayout.exe`, `SearchLayout.exe.config`, `SearchNative.dll` и `StartupLauncher.exe` должны оставаться рядом.
+3. Откройте `SearchLayout.exe`. При новом ручном запуске исправление выключено.
+4. Нажмите **«Включить»** и пользуйтесь обычным поиском Windows.
 
-No installer or administrator privileges are required. The executables are unsigned, so Windows SmartScreen may show a warning.
+Установщик и права администратора не нужны. Исполняемые файлы не подписаны, поэтому Windows SmartScreen может показать предупреждение.
 
-## How it works
+## Как это работает
 
-LayoutSeek maps characters by physical keyboard position and checks the result against a local list of installed apps. A match can start with a short prefix, such as `ср` → `ch`, and you can continue typing in the original layout. Continued input can restore the original text, as in the tested Russian words `срочно` and `среда`.
+LayoutSeek сопоставляет символы по физическим клавишам и сверяет результат с локальным каталогом установленных программ. Исправление может начаться с короткого префикса, например `ср` → `ch`. Затем можно продолжать ввод в исходной раскладке. Продолжение может вернуть исходный текст, как в проверенных словах `срочно` и `среда`.
 
-![Native Windows Search results from the 0.3.3 test of the ср to ch prefix](docs/images/search-prefix.png)
+![Результаты настоящего Windows Search при проверке префикса ср в ch в версии 0.3.3](docs/images/search-prefix.png)
 
-Native Search results captured during 0.3.3 verification of `ср` → `ch`. This is a previous-version example; 0.3.4 uses the same Search engine.
+Результаты штатного Search при проверке `ср` → `ch` в версии 0.3.3. Это пример из предыдущей версии; в 0.3.4 используется тот же движок Search.
 
-It waits for a pause in input. The idle delay is 700 ms; a correction commonly takes about a second, but timing varies. Results still come from native Windows Search.
+Программа ждёт паузу во вводе. Задержка ожидания составляет 700 мс; обычно исправление занимает около секунды, но время может меняться. Результаты показывает штатный поиск Windows.
 
-Processing stays on your computer. LayoutSeek does not use keyboard hooks or process injection, keep a query history, or send queries over the network. Windows Search has its own network and history settings. See [Privacy](PRIVACY.md).
+Обработка происходит на компьютере. LayoutSeek не использует перехватчики клавиатуры или внедрение в процессы, не ведёт историю запросов и не отправляет их по сети. У самого поиска Windows есть собственные настройки сети и истории. Подробнее в [политике конфиденциальности](PRIVACY.md).
 
-## Tray, startup and removal
+## Трей, автозапуск и удаление
 
-**«В трей»** hides the window and keeps the current correction state. Launching the EXE again shows the same running instance. The window's close button and **«Завершить»** in the tray menu exit the app.
+**«В трей»** скрывает окно с сохранением режима исправления. Повторный запуск EXE показывает окно уже работающего экземпляра. Крестик окна и **«Завершить»** в меню трея закрывают приложение.
 
-Startup is optional. Check **«Запускать при входе в Windows»** to add `LayoutSeek.lnk` to your Windows user Startup folder. The checkbox reports this app's shortcut registration; Windows can separately disable it in Startup settings. The shortcut selects startup mode, which opens in the tray and enables correction after the app list loads. An actual Windows sign-out and sign-in has not yet been tested.
+Автозапуск включается отдельно. Флажок **«Запускать при входе в Windows»** добавляет `LayoutSeek.lnk` в папку автозагрузки текущего пользователя Windows. Флажок показывает наличие ярлыка программы; Windows может отдельно отключить его в настройках автозагрузки. Ярлык выбирает режим запуска в трее с включением исправлений после загрузки каталога. Настоящий выход из Windows и повторный вход пока не проверялись.
 
-Before moving the app folder, turn startup off, exit, move the folder, then enable startup from the new location. To remove LayoutSeek, turn startup off, exit and delete the extracted folder.
+Перед переносом папки выключите автозапуск, завершите программу, перенесите папку и включите автозапуск из нового места. Для удаления выключите автозапуск, завершите программу и удалите распакованную папку.
 
-## Known limits
+## Известные ограничения
 
-- Russian ↔ English US has been tested in native Search on one Windows 11 Enterprise LTSC 24H2 PC. Other standard layouts paired with English have synthetic test coverage only. IMEs, dead keys, composed input and ambiguous mappings are skipped.
-- Valid Russian continuations were tested in specific scenarios; arbitrary text and every app name are not guaranteed to be recognized.
-- This corrects keyboard layout mistakes in app searches. It is not translation, transliteration or search-index repair.
-- An early 0.3.1 test recorded a missing first character before correction. The cause remains unexplained; later passing tests do not establish loss-free input.
-- Compatibility with other Windows builds and behavior after an actual sign-in remain unverified.
+- Русская ↔ English US проверена в настоящем поиске на одном ПК с Windows 11 Enterprise LTSC 24H2. Другие обычные раскладки в паре с английской проверялись только на искусственных данных. IME, dead keys, составной ввод и неоднозначные соответствия пропускаются.
+- Сохранение корректных русских продолжений проверено в отдельных сценариях. Распознавание произвольного текста и любого названия приложения не гарантируется.
+- Программа исправляет ошибки раскладки при поиске приложений. Она не переводит текст, не выполняет транслитерацию и не ремонтирует поисковый индекс.
+- В раннем тесте 0.3.1 отсутствовал первый символ ещё до исправления. Причина не установлена; последующие успешные проверки не гарантируют отсутствие потерь при вводе.
+- Совместимость с другими сборками Windows и поведение после настоящего входа в систему ещё не подтверждены.
 
 <details>
-<summary>Verification and building from source</summary>
+<summary>Проверки и сборка из исходников</summary>
 
-Version 0.3.4 passed 127 UI checks with substituted dependencies, 12 shortcut checks using real Windows COM, and 10 checks through UI Automation on the running app. The live checks created and removed the current user's startup shortcut. They do not cover an actual Windows sign-in.
+В 0.3.4 прошли 127 проверок UI с подменёнными зависимостями, 12 проверок ярлыков через настоящий Windows COM и 10 проверок работающего приложения через UI Automation. Живые проверки создавали и удаляли ярлык в автозагрузке текущего пользователя. Настоящий вход в Windows они не проверяют.
 
-The Search engine is unchanged from 0.3.3. Native checks on that version passed 22 Search checks, 10 focus checks and 6 extra checks. One paste test was skipped because the test did not support the existing clipboard format. The layout module passed 37 checks including synthetic cases; that does not establish native support for every layout.
+Движок Search не менялся после 0.3.3. На той версии прошли 22 проверки настоящего поиска, 10 проверок фокуса и 6 дополнительных проверок. Один сценарий вставки пропущен: тест не поддерживал исходный формат буфера обмена. Модуль раскладок прошёл 37 проверок, включая искусственные сценарии; это не подтверждает работу каждой раскладки в настоящем поиске.
 
-To build, use Windows x64 with the installed .NET Framework C# compiler, Visual Studio 2022 C++ build tools and a Windows SDK that includes C++/WinRT UI Automation headers. Open PowerShell in the repository root:
+Для сборки нужны Windows x64, установленный компилятор C# из .NET Framework, инструменты C++ Visual Studio 2022 и Windows SDK с заголовками UI Automation для C++/WinRT. Откройте PowerShell в корне репозитория:
 
 ```powershell
 .\Build.ps1
 ```
 
-Output is written to `bin`. The default build includes test executables; it does not run them. To omit test builds:
+Результат сохраняется в `bin`. Обычная сборка включает тестовые EXE, но не запускает их. Чтобы собрать без тестовых файлов:
 
 ```powershell
 .\Build.ps1 -SkipTests
 ```
 
-To build a portable release ZIP and SHA-256 checksums in `artifacts`:
+Для сборки переносного ZIP и контрольных сумм SHA-256 в папке `artifacts`:
 
 ```powershell
 .\BuildRelease.ps1
 ```
 
-Live Search tests control the real Search window and type test queries. Run them only on a free PC while nobody is using its keyboard or mouse.
+Живые проверки управляют настоящим окном Search и вводят тестовые запросы. Запускайте их только на свободном ПК, когда никто не пользуется клавиатурой и мышью.
 
 </details>
 
-## Support and license
+## Поддержка и лицензия
 
-Report a problem in [GitHub Issues](https://github.com/alekzmasai/LayoutSeek/issues), or email [ag@idbi.ru](mailto:ag@idbi.ru). Include your Windows version, keyboard layouts and steps to reproduce. GitHub Issues are public.
+О проблеме можно написать в [GitHub Issues](https://github.com/alekzmasai/LayoutSeek/issues) или на [ag@idbi.ru](mailto:ag@idbi.ru). Укажите версию Windows, раскладки и шаги воспроизведения. Обращения в GitHub Issues публичны.
 
-[MIT license](LICENSE). Copyright (c) 2026 t00r.
+[Лицензия MIT](LICENSE). Copyright (c) 2026 t00r.

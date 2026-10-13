@@ -12,7 +12,7 @@ if (Test-Path -LiteralPath $zip) { throw 'Release archive already exists.' }
 foreach ($name in @('SearchLayout.exe','SearchLayout.exe.config','SearchNative.dll','StartupLauncher.exe')) {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('bin\' + $name)) -Destination (Join-Path $payload $name)
 }
-foreach ($name in @('README.md','README.ru.md','PRIVACY.md','PRIVACY.ru.md','LICENSE')) {
+foreach ($name in @('README.md','README.ru.md','README.en.md','PRIVACY.md','PRIVACY.ru.md','PRIVACY.en.md','LICENSE')) {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot $name) -Destination (Join-Path $payload $name)
 }
 $images = Join-Path $payload 'docs\images'
