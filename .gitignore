@@ -1,0 +1,15 @@
+bin/
+artifacts/
+verification/
+ui-tests/
+*.obj
+*.lib
+*.exp
+*.pdb
+*.pfx
+*.pem
+*.key
+*.cer
+*.msix
+*-tests.json
+*.log
